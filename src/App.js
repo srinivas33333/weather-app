@@ -33,7 +33,7 @@ function App() {
 
     try {
       const weaterResponse = await fetch(weaterUrl);
-      if (!weaterResponse.ok) console.log(response.status);
+      if (!weaterResponse.ok) console.log('-weaterResponse', weaterResponse.status);
       const weaterData = await weaterResponse.json();
 
       const uniqueDays = {};
