@@ -25,6 +25,9 @@
 .search input {
   flex-grow: 1;
   margin-right: 10px;
+  border: 1px solid orange;
+  outline: none;
+  padding: 5px;
 }
 
 .orange-btn {

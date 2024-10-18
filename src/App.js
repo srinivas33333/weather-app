@@ -11,6 +11,7 @@ function App() {
   const [citySuggestions, setCitySuggestions] = useState([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const debouncedSearch = useDebounce(search, 500);
+  const [cityName, setCityName] = useState('');
 
   useEffect(() => {
     if (debouncedSearch) {
@@ -28,6 +29,8 @@ function App() {
     const baseUrl = `https://api.openweathermap.org`;
 
     setLoading(true);
+    setCityName('');
+    setWeatherData([]);
     const weaterUrl = `${baseUrl}/data/2.5/forecast?lat=${selectedCity.lat}&lon=${selectedCity.lon}&appid=${API_KEY}`;
 
     try {
@@ -50,6 +53,7 @@ function App() {
         if (filteredData.length >= 5) break;
       }
 
+      setCityName(search);
       setWeatherData(filteredData);
     } catch (error) {
       console.error('weather data:', error);
@@ -90,6 +94,13 @@ function App() {
     setIsDropdownVisible(false);
   };
 
+  const handleInputChange = (val) => {
+    setSearch(val);
+    setSelectedCity(() => {
+      const city = citySuggestions.find(v => v.name === val) 
+      return city || null 
+    });
+  }
   return (
     <div className="App">
       <nav className="search">
@@ -99,7 +110,7 @@ function App() {
             <input 
               type="text" 
               value={search} 
-              onChange={(e) => setSearch(e.target.value)} 
+              onChange={(e) => handleInputChange(e.target.value)} 
               onClick={handleInputClick}
               placeholder="Type city name"
             />
@@ -118,9 +129,8 @@ function App() {
             </ul>
           )}
         </section>
-        {/* {loading && <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." className='loading' />} */}
       </nav>
-      <Weater data={weatherData} />
+      <Weater data={ weatherData } cityName={ cityName } />
     </div>
   );
 }
