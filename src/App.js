@@ -7,7 +7,6 @@ function App() {
   const [search, setSearch] = useState('');
   const [selectedCity, setSelectedCity] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [loadingCities, setLoadingCities] = useState(false);
   const [weatherData, setWeatherData] = useState([]);
   const [citySuggestions, setCitySuggestions] = useState([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -15,7 +14,7 @@ function App() {
 
   useEffect(() => {
     if (debouncedSearch) {
-      setLoadingCities(true);
+      setLoading(true);
       fetchCityCoordinates(debouncedSearch)
     } else {
       setCitySuggestions([]);
@@ -53,7 +52,7 @@ function App() {
 
       setWeatherData(filteredData);
     } catch (error) {
-      console.error('Error fetching weather data:', error);
+      console.error('weather data:', error);
     } finally {
       setLoading(false);
     }
@@ -70,8 +69,8 @@ function App() {
       const data = await response.json();
       setCitySuggestions(data);
     } catch (error) {
-      console.error('Error fetching city coordinates:', error);
-    } finally { setLoadingCities(false) };
+      console.error('coordinates:', error);
+    } finally { setLoading(false) };
   };
 
   const handleCityClick = (city) => {
@@ -107,7 +106,7 @@ function App() {
             <button className="orange-btn" onClick={handleApi} disabled={!selectedCity}>
               Search
             </button>
-            {loadingCities && <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." className='loading' />}
+            {loading && <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." className='loading' />}
           </form>
           {isDropdownVisible && citySuggestions.length > 0 && (
             <ul className="suggestions" onMouseLeave={handleMouseLeave}>
@@ -119,7 +118,7 @@ function App() {
             </ul>
           )}
         </section>
-        {loading && <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." className='loading' />}
+        {/* {loading && <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." className='loading' />} */}
       </nav>
       <Weater data={weatherData} />
     </div>

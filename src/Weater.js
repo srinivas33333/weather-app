@@ -5,7 +5,7 @@ function Weater({ data }) {
 
   return (
     <section className='weather-container'>
-      {data.slice(0, 5).map((val, index) => (
+      {data.map((val, index) => (
         <table className="weather-table" key={index}>
           <thead>
             <tr className="date-row">
