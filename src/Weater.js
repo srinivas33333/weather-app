@@ -14,7 +14,7 @@ function Weater({ data }) {
           </thead>
           <tbody>
             <tr className="temperature-row">
-              <td colSpan="2">Temperature: {val.main.temp}°C</td>
+              <td colSpan="2">Temperature</td>
             </tr>
             <tr>
               <th>Min</th>

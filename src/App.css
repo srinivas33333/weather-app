@@ -14,6 +14,7 @@
   align-items: center;
   margin: 20px;
   justify-content: space-evenly;
+  gap: 20px;
 }
 
 .search form {
@@ -117,6 +118,10 @@
 
   .weather-table {
     width: 100%;
+  }
+  form{
+    flex-direction: column;
+    gap: 20px;
   }
 }
 
