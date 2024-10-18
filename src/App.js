@@ -25,7 +25,7 @@ function App() {
     if (!selectedCity) return;
 
     const API_KEY = process.env.REACT_APP_API_KEY;
-    const baseUrl = `http://api.openweathermap.org`;
+    const baseUrl = `https://api.openweathermap.org`;
 
     setLoading(true);
     const weaterUrl = `${baseUrl}/data/2.5/forecast?lat=${selectedCity.lat}&lon=${selectedCity.lon}&appid=${API_KEY}`;
@@ -60,7 +60,7 @@ function App() {
 
   const fetchCityCoordinates = async (city) => {
     const API_KEY = process.env.REACT_APP_API_KEY;
-    const baseUrl = `http://api.openweathermap.org`;
+    const baseUrl = `https://api.openweathermap.org`;
     const cityUrl = `${baseUrl}/geo/1.0/direct?q=${city}&limit=5&appid=${API_KEY}`;
 
     try {
