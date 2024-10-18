@@ -1,38 +1,136 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.orange-text {
+  color: orange;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin: 20px;
+  justify-content: space-evenly;
+}
+
+.search form {
+  display: flex;
+  align-items: center;
+}
+
+.search input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.orange-btn {
+  background-color: orange;
   color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.orange-btn:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.loading {
+  display: inline-block;
+  margin-left: 10px;
+  width: 20px;
+}
+
+.suggestions {
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  background: white;
+  width: 30%;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  text-align: left;
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
+.weather-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+
+.weather-table {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 90%;
+  max-width: 600px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.weather-table th,
+.weather-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.date-row th {
+  background-color: orange;
+  color: white;
+  text-align: center;
+}
+
+.temperature-row td {
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.weather-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+@media (max-width: 600px) {
+  .search {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .weather-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .weather-table {
+    width: 100%;
+  }
+}
+
+@media (min-width: 601px) {
+  .search {
+    flex-direction: row;
+  }
+
+  .weather-container {
+    flex-direction: row;
+  }
+
+  .weather-table {
+    width: 20%
   }
 }
